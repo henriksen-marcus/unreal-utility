@@ -321,7 +321,8 @@ func main() {
 	// Wait for the command to finish
 	err = command.Wait()
 	if err != nil {
-		color.Red("Error waiting for command: %v", err)
+		color.Red("Compile error: %v", err)
+		return
 	}
 
 	color.Green("Finished compiling project.")
