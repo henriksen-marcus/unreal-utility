@@ -215,8 +215,6 @@ func main() {
 
 	fmt.Printf("Project "+color.CyanString("%v")+" was found.\n", projectName)
 
-	fmt.Println(color.GreenString(" done."))
-
 	ubtPath, err := getUBTPath()
 	if err != nil {
 		color.Red(err.Error())
