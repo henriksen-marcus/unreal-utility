@@ -276,7 +276,7 @@ func main() {
 
 	err = deleteFiles(projectName)
 	if err != nil {
-		color.Red("Error deleting files: " + err.Error())
+		color.Red("Error deleting files. Did you close Unreal Engine and your IDE?\n" + err.Error())
 		freezeConsoleWindow()
 		return
 	}
