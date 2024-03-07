@@ -42,7 +42,7 @@ func getUprojectFile() (string, error) {
 
 	if uprojectPath == "" {
 		fullPath, _ := filepath.Abs(rootPath)
-		return "", fmt.Errorf("No uproject file found in directory: %s\nAre you sure this exe file is located in an unreal engine project?", fullPath)
+		return "", fmt.Errorf("No uproject file found in this directory. %s\nAre you sure this exe file is located in an unreal engine project?", fullPath)
 	}
 
 	return uprojectPath, nil
@@ -244,6 +244,11 @@ func getUBTPath() (string, error) {
 	return ubtPath, nil
 }
 
+func freezeConsoleWindow() {
+	fmt.Println("\nPress Enter to exit...")
+	fmt.Scanln()
+}
+
 func main() {
 	titleFont := color.New(color.FgWhite, color.Bold)
 
@@ -253,6 +258,7 @@ func main() {
 
 	if err != nil {
 		color.Red(err.Error())
+		freezeConsoleWindow()
 		return
 	}
 
@@ -261,6 +267,7 @@ func main() {
 	projectName, err := getProjectName(uprojectPath)
 	if err != nil {
 		color.Red(err.Error())
+		freezeConsoleWindow()
 	}
 
 	fmt.Printf("Project "+color.CyanString("%v")+" was found.\n", projectName)
@@ -270,14 +277,16 @@ func main() {
 	err = deleteFiles(projectName)
 	if err != nil {
 		color.Red("Error deleting files: " + err.Error())
+		freezeConsoleWindow()
 		return
 	}
 
-	fmt.Println(" done.")
+	fmt.Println(color.GreenString(" done."))
 
 	ubtPath, err := getUBTPath()
 	if err != nil {
 		color.Red(err.Error())
+		freezeConsoleWindow()
 		return
 	}
 
@@ -289,6 +298,7 @@ func main() {
 	err = command.Run()
 	if err != nil {
 		color.Red("Error generating project files: " + err.Error())
+		freezeConsoleWindow()
 		return
 	}
 	color.Green("Finished generating project files.")
@@ -300,11 +310,13 @@ func main() {
 	stdoutPipe, err := command.StdoutPipe()
 	if err != nil {
 		color.Red("Error creating stdout pipe: %v", err)
+		freezeConsoleWindow()
 	}
 
 	err = command.Start()
 	if err != nil {
 		color.Red("Error starting compile command: %v", err)
+		freezeConsoleWindow()
 	}
 
 	scanner := bufio.NewScanner(stdoutPipe)
@@ -316,12 +328,14 @@ func main() {
 	// Check if there was an error reading from the pipe
 	if err := scanner.Err(); err != nil {
 		color.Red("Error reading from pipe: %v", err)
+		freezeConsoleWindow()
 	}
 
 	// Wait for the command to finish
 	err = command.Wait()
 	if err != nil {
 		color.Red("Compile error: %v", err)
+		freezeConsoleWindow()
 		return
 	}
 
