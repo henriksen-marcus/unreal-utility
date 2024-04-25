@@ -8,7 +8,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"time"
 
 	"github.com/fatih/color"
 	"golang.org/x/sys/windows/registry"
@@ -195,7 +194,7 @@ func freezeConsoleWindow() {
 func main() {
 	titleFont := color.New(color.FgWhite, color.Bold)
 
-	titleFont.Println("Unreal Utility v0.1\n")
+	titleFont.Println("Unreal Builder v0.1\n")
 
 	uprojectPath, err := getUprojectFile()
 
@@ -263,5 +262,5 @@ func main() {
 	color.Green("Finished compiling project.")
 	fmt.Println("\n" + color.CyanString(projectName) + " was successfully rebuilt.")
 
-	time.Sleep(2 * time.Second)
+	freezeConsoleWindow()
 }

@@ -8,7 +8,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"time"
 
 	"github.com/fatih/color"
 	"golang.org/x/sys/windows/registry"
@@ -342,5 +341,5 @@ func main() {
 	color.Green("Finished compiling project.")
 	fmt.Println("\n" + color.CyanString(projectName) + " was successfully rebuilt.")
 
-	time.Sleep(2 * time.Second)
+	freezeConsoleWindow()
 }
