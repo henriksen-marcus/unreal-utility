@@ -86,7 +86,6 @@ func deleteFiles(projectName string) error {
 	folderList := []string{
 		".vs",
 		"Binaries",
-		"Build",
 		"Intermediate",
 		"DerivedDataCache",
 	}
