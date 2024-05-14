@@ -10,8 +10,8 @@
 <br>
 
 ## What is it?
-unreal-utility is a program written in Go, deisgned to delete UE temporary files (Binaries, Intermediate etc.), automatically generate visual studio project files and finally compile the project for you.<br><br>
-unreal-builder is a subset of unreal-utlity than only compiles the project. This allows you to compile without opening an IDE or UE first, saving RAM and drastically decreating compile time.
+unreal-utility is a program written in Go, designed to delete UE temporary files (Binaries, Intermediate etc.), automatically generate visual studio project files and finally compile the project for you.<br><br>
+unreal-builder is a subset of unreal-utility that only compiles the project. This allows you to compile without opening an IDE or UE first, saving RAM and drastically decreasing compile time.
 
 ## :zap: How to use
 Download the desired program from [releases](https://github.com/henriksen-marcus/unreal-utility/releases) and copy it to your unreal engine project directory. It should be on the same level as your `.uproject` file. **Make sure unreal engine and visual studio is closed before running, to avoid permission errors.** Then just run the exe to either clean + compile, or just compile depending on which program you downloaded.
